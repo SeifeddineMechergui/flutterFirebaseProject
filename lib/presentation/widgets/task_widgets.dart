@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_to_do_list/const/colors.dart';
-import 'package:flutter_to_do_list/data/firestor.dart';
-import 'package:flutter_to_do_list/model/notes_model.dart';
-import 'package:flutter_to_do_list/screen/edit_screen.dart';
+import 'package:flutter_to_do_list/core/const/colors.dart';
+import 'package:flutter_to_do_list/features/data/firestor.dart';
+import 'package:flutter_to_do_list/features/data/model/notes_model.dart';
+import 'package:flutter_to_do_list/presentation/screen/edit_screen.dart';
 
 class Task_Widget extends StatefulWidget {
   Note _note;

@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_to_do_list/const/colors.dart';
-import 'package:flutter_to_do_list/data/auth_data.dart';
+import 'package:flutter_to_do_list/core/const/colors.dart';
+import 'package:flutter_to_do_list/features/data/auth_data.dart';
 
-class SignUp_Screen extends StatefulWidget {
+class LogIN_Screen extends StatefulWidget {
   final VoidCallback show;
-  SignUp_Screen(this.show, {super.key});
+  LogIN_Screen(this.show, {super.key});
 
   @override
-  State<SignUp_Screen> createState() => _SignUp_ScreenState();
+  State<LogIN_Screen> createState() => _LogIN_ScreenState();
 }
 
-class _SignUp_ScreenState extends State<SignUp_Screen> {
+class _LogIN_ScreenState extends State<LogIN_Screen> {
   FocusNode _focusNode1 = FocusNode();
   FocusNode _focusNode2 = FocusNode();
-  FocusNode _focusNode3 = FocusNode();
 
   final email = TextEditingController();
   final password = TextEditingController();
-  final PasswordConfirm = TextEditingController();
 
   @override
   void initState() {
@@ -26,10 +24,8 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
     _focusNode1.addListener(() {
       setState(() {});
     });
+    super.initState();
     _focusNode2.addListener(() {
-      setState(() {});
-    });
-    _focusNode3.addListener(() {
       setState(() {});
     });
   }
@@ -47,14 +43,22 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
               SizedBox(height: 50),
               textfield(email, _focusNode1, 'Email', Icons.email),
               SizedBox(height: 10),
-              textfield(password, _focusNode2, 'Password', Icons.password),
-              SizedBox(height: 10),
-              textfield(PasswordConfirm, _focusNode3, 'PasswordConfirm',
-                  Icons.password),
+              TextField(
+  controller: password, // Assuming "email" is a TextEditingController
+  focusNode: _focusNode1,
+  obscureText: true, // Setting this to true makes it a password field
+  decoration: InputDecoration(
+    labelText: 'Password', // Change label text to Password
+    hintText: 'Enter your password',
+    prefixIcon: Icon(Icons.password), // Assuming there's a password icon
+    // You can customize other InputDecoration properties here
+  ),
+)
+,
               SizedBox(height: 8),
               account(),
               SizedBox(height: 20),
-              SignUP_bottom(),
+              Login_bottom(),
             ],
           ),
         ),
@@ -69,14 +73,14 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            "Don you have an account?",
+            "Don't have an account?",
             style: TextStyle(color: Colors.grey[700], fontSize: 14),
           ),
           SizedBox(width: 5),
           GestureDetector(
             onTap: widget.show,
             child: Text(
-              'Login',
+              'Sign UP',
               style: TextStyle(
                   color: Colors.blue,
                   fontSize: 14,
@@ -88,13 +92,12 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
     );
   }
 
-  Widget SignUP_bottom() {
+  Widget Login_bottom() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: GestureDetector(
         onTap: () {
-          AuthenticationRemote()
-              .register(email.text, password.text, PasswordConfirm.text);
+          AuthenticationRemote().login(email.text, password.text);
         },
         child: Container(
           alignment: Alignment.center,
@@ -105,7 +108,7 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Text(
-            'Sign Up',
+            'LogIn',
             style: TextStyle(
               color: Colors.white,
               fontSize: 23,

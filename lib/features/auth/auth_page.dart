@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_to_do_list/screen/SingUP.dart';
-import 'package:flutter_to_do_list/screen/login.dart';
+import 'package:flutter_to_do_list/presentation/screen/SingUP.dart';
+import 'package:flutter_to_do_list/presentation/screen/login.dart';
 
 class Auth_Page extends StatefulWidget {
   Auth_Page({super.key});
